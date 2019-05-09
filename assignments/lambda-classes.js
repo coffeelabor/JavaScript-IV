@@ -23,7 +23,7 @@ class Person {
     this.location = attributes.location;
   }
   speak() {
-    console.log(`Hello my name is ${this.name} I am from ${this.location}`);
+    return `Hello my name is ${this.name} I am from ${this.location}`;
   }
 }
 
@@ -39,6 +39,18 @@ class Person {
 //   * `demo` receives a`subject` string as an argument and logs out the phrase 'Today we are learning about {subject}' where subject is the param passed in.
 //   * `grade` receives a`student` object and a`subject` string as arguments and logs out '{student.name} receives a perfect score on {subject}'
 
+class Instructor extends Person {
+  constructor(InstructorAttributes) {
+    super(InstructorAttributes);
+    this.specialty = InstructorAttributes.specialty;
+    this.favLanguage = InstructorAttributes.favLanguage;
+    this.catchPhrase = InstructorAttributes.catchPhrase;
+  }
+  demo(subject) {
+    return `Today we are learning about ${subject}`;
+  }
+}
+
 // #### Student
 
 //     * Now we need some students!
@@ -52,6 +64,20 @@ class Person {
 //     * `PRAssignment` a method that receives a subject as an argument and logs out that the`student.name has submitted a PR for {subject}`
 //         * `sprintChallenge` similar to PRAssignment but logs out`student.name has begun sprint challenge on {subject}`
 
+class Student extends Person {
+  constructor(StudentAttributes) {
+    super(StudentAttributes);
+    this.previousBackground = StudentAttributes.previousBackground;
+    this.cohortName = StudentAttributes.cohortName;
+    this.favSubject = StudentAttributes.favSubject;
+  }
+  listsSubjects() {
+    return StudentAttributes.favSubject;
+  }
+  PRAssignment() {}
+  sprintChallenge() {}
+}
+
 // #### Project Manager
 
 //     * Now that we have instructors and students, we'd be nowhere without our PM's
@@ -63,7 +89,17 @@ class Person {
 //   * `standUp` a method that takes in a slack channel and logs`{name} announces to {channel}, @channel standy times!​​​​​
 //   * `debugsCode` a method that takes in a student object and a subject and logs out `{ name } debugs { student.name } 's code on {subject}`
 
-const fred = new Person({
+class ProjectManagers extends Instructor {
+  constructor(PMAttributes) {
+    super(PMAttributes);
+    this.gradClassName = PMAttributes.gradClassName;
+    this.favInstructor = PMAttributes.favInstructor;
+  }
+  standUp() {}
+  debugsCode() {}
+}
+
+const fred = new Instructor({
   name: "Fred",
   location: "Bedrock",
   age: 37,
@@ -74,3 +110,4 @@ const fred = new Person({
 
 console.log(fred);
 console.log(fred.speak());
+console.log(fred.demo("everything"));
