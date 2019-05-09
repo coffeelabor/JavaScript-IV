@@ -37,6 +37,15 @@ CharacterStats.prototype.takeDamage = function() {
   return `${this.name} ouch`;
 };
 
+class Humanoid {
+  constructor(attributes) {
+    super(attributes);
+    this.team = attributes.team;
+    this.weapons = attributes.weapons;
+    this.language = attributes.language;
+  }
+}
+
 function Humanoid(attributes) {
   CharacterStats.call(this, attributes);
   this.team = attributes.team;
