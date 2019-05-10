@@ -12,11 +12,19 @@ Prototype Refactor
  * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
  * Instances of CharacterStats should have all of the same properties as GameObject.
  */
-function GameObject(obj) {
-  this.createdAt = obj.createdAt;
-  this.name = obj.name;
-  this.dimensions = obj.dimensions;
-  // destroy() // prototype method that returns: `${this.name} was removed from the game.`
+// function GameObject(obj) {
+//   this.createdAt = obj.createdAt;
+//   this.name = obj.name;
+//   this.dimensions = obj.dimensions;
+//   // destroy() // prototype method that returns: `${this.name} was removed from the game.`
+// }
+
+class GameObject {
+  constructor(obj) {
+    this.createdAt = obj.createdAt;
+    this.name = obj.name;
+    this.dimensions = obj.dimensions;
+  }
 }
 
 GameObject.prototype.destroy = function() {
@@ -46,15 +54,15 @@ class Humanoid {
   }
 }
 
-function Humanoid(attributes) {
-  CharacterStats.call(this, attributes);
-  this.team = attributes.team;
-  this.weapons = attributes.weapons;
-  this.language = attributes.language;
-  // greet() // prototype method -> returns the string '<object name> offers a greeting in <object language>.'
-  // should inherit destroy() from GameObject through CharacterStats
-  // should inherit takeDamage() from CharacterStats
-}
+// function Humanoid(attributes) {
+//   CharacterStats.call(this, attributes);
+//   this.team = attributes.team;
+//   this.weapons = attributes.weapons;
+//   this.language = attributes.language;
+//   // greet() // prototype method -> returns the string '<object name> offers a greeting in <object language>.'
+//   // should inherit destroy() from GameObject through CharacterStats
+//   // should inherit takeDamage() from CharacterStats
+// }
 
 Humanoid.prototype = Object.create(CharacterStats.prototype);
 

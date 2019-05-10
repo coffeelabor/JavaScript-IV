@@ -70,12 +70,20 @@ class Student extends Person {
     this.previousBackground = StudentAttributes.previousBackground;
     this.cohortName = StudentAttributes.cohortName;
     this.favSubject = StudentAttributes.favSubject;
+    this.project = StudentAttributes.project;
+    this.sprint = StudentAttributes.sprint;
   }
   listsSubjects() {
-    return StudentAttributes.favSubject;
+    return this.favSubject.map(function(subjects) {
+      return subjects;
+    });
   }
-  PRAssignment() {}
-  sprintChallenge() {}
+  PRAssignment() {
+    return `${this.name} has submitted a PR for ${this.project}`;
+  }
+  sprintChallenge() {
+    return `${this.name} has begun ${this.sprint}`;
+  }
 }
 
 // #### Project Manager
@@ -94,9 +102,14 @@ class ProjectManagers extends Instructor {
     super(PMAttributes);
     this.gradClassName = PMAttributes.gradClassName;
     this.favInstructor = PMAttributes.favInstructor;
+    this.channel = PMAttributes.channel;
   }
-  standUp() {}
-  debugsCode() {}
+  standUp() {
+    return `${this.name} announces to ${this.channel}, @channel standy times!`;
+  }
+  debugsCode() {
+    return `${this.name} debugs ${student.name} 's code on {subject}`;
+  }
 }
 
 const fred = new Instructor({
@@ -108,6 +121,39 @@ const fred = new Instructor({
   catchPhrase: `Don't forget the homies`
 });
 
+const Bob = new Student({
+  name: "Bob",
+  location: "House",
+  age: 37,
+  favLanguage: "HTML",
+  specialty: "Front-end",
+  catchPhrase: `This is the catchphrase`,
+  favSubject: ["stuff", "more stuff"],
+  project: "project 1",
+  sprint: "sprint2"
+});
+
+const Alice = new ProjectManagers({
+  name: "Alice",
+  location: "House",
+  age: 37,
+  favLanguage: "HTML",
+  specialty: "Front-end",
+  catchPhrase: `This is the catchphrase`,
+  channel: "Web20"
+});
+
 console.log(fred);
 console.log(fred.speak());
 console.log(fred.demo("everything"));
+
+console.log(Bob);
+console.log(Bob.speak());
+console.log(Bob.listsSubjects());
+console.log(Bob.PRAssignment());
+console.log(Bob.sprintChallenge());
+
+console.log(Alice);
+console.log(Alice.speak());
+console.log(Alice.standUp());
+console.log(Alice.debugsCode());
